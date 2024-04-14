@@ -1,0 +1,21 @@
+.PlaylistItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 10px;
+  font-family: Rubik, sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  text-align: center;
+
+  div {
+    color: #d3dadd;
+  }
+
+  img {
+    width: 72px;
+    height: 72px;
+  }
+}
