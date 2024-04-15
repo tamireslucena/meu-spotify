@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
 
-  .PlaylistTitle {
+  .playlistTitle {
     font-size: 25px;
     font-weight: bold;
   }

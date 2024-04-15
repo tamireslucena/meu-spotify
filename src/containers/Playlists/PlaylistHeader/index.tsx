@@ -1,4 +1,5 @@
 import GreenButton from "../../../components/GreenButton";
+import "./index.css";
 
 interface PlaylistHeaderProps {
   handleOpen: () => void;
@@ -7,8 +8,7 @@ interface PlaylistHeaderProps {
 function PlaylistHeader({ handleOpen }: PlaylistHeaderProps) {
   return (
     <div className="PlaylistHeader">
-      <div className="PlaylistTitle">Minhas Playlists</div>
-      <br />
+      <div className="playlistTitle"> Minhas Playlists</div>
       <GreenButton label="Criar playlist" onClick={handleOpen} />
     </div>
   );

@@ -1,7 +1,6 @@
 .Artists {
   display: flex;
   flex-direction: column;
-  font-family: Rubik, sans-serif;
   color: #d3dadd;
 
   .artistsPageTitle {
