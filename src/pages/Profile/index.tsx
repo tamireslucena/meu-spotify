@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import "./index.css";
 import ProfileItem from "../../containers/Profile/ProfileItem";
 import { ProfileProps, getUserProfile } from "../../gateway/Profile";
-import defaultUserCover from "../../../assets/images/default_user_cover.png";
+import defaultUserCover from "../../assets/images/default_user_cover.jpeg";
 
 function Profile() {
   const [userProfile, setUserProfile] = useState<ProfileProps | null>(null);
@@ -22,7 +22,7 @@ function Profile() {
     <div className="Profile">
       {userProfile ? (
         <ProfileItem
-          icon={userProfile.images?.[0].url ?? defaultUserCover}
+          icon={userProfile.images[0]?.url ?? defaultUserCover}
           displayName={userProfile.display_name}
         ></ProfileItem>
       ) : (
