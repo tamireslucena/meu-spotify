@@ -1,101 +1,74 @@
-// styles
-
 import { useEffect, useState } from "react";
+import { Pagination } from "@mui/material";
+import PlaylistList from "../../containers/Playlists/PlaylistList";
+import PlaylistModal from "../../containers/Playlists/PlaylistModal";
+import {
+  PlaylistProps,
+  createPlaylist,
+  getUserPlaylists,
+} from "../../gateway/Playlist";
+// styles
 import "./index.css";
-import Template from "../../containers/Template";
-import spotify from "../../services/spotify";
-import PlaylistItem from "../../components/PlaylistItem";
-import GreenButton from "../../components/GreenButton";
-
-interface Playlist {
-  id: string;
-  name: string;
-  description: string;
-  images: {
-    url: string;
-    width: number;
-    height: number;
-  }[];
-}
-
-async function getUserPlaylists(): Promise<Playlist[] | null> {
-  try {
-    const response = await spotify.get("/v1/me/playlists", {
-      params: {
-        limit: 10,
-        offset: 0,
-      },
-    });
-    return response.data.items;
-  } catch (error) {
-    console.error("Error fetching playlists:", error);
-    return [
-      {
-        description: "string",
-        id: "string",
-        images: [
-          {
-            url: "https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228",
-            height: 300,
-            width: 300,
-          },
-        ],
-        name: "string",
-      },
-    ];
-  }
-}
+import PlaylistHeader from "../../containers/Playlists/PlaylistHeader";
 
 function Playlists() {
-  const [playlists, setPlaylists] = useState<Playlist[] | null>(null);
+  const [playlists, setPlaylists] = useState<PlaylistProps[] | null>(null);
+  const [newPlaylistName, setNewPlaylistName] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  async function fetchPlaylists(page: number) {
+    const userPlaylists = await getUserPlaylists({
+      limit: 8,
+      offset: (page - 1) * 8,
+    });
+    setPlaylists(userPlaylists.items);
+    setTotalPages(Math.ceil(userPlaylists.total / 8));
+  }
 
   useEffect(() => {
-    async function fetchPlaylists() {
-      const userPlaylists = await getUserPlaylists();
-      setPlaylists(userPlaylists);
-    }
+    fetchPlaylists(page);
+  }, [page]);
 
-    fetchPlaylists();
-  }, []);
+  const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+
+  const handleConfirm = () => {
+    createPlaylist(newPlaylistName).then(() => {
+      setOpen(false);
+      fetchPlaylists(page);
+    });
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNewPlaylistName(event.target.value);
+  };
 
   return (
-    <Template>
+    <>
+      <PlaylistModal
+        open={open}
+        handleClose={handleClose}
+        handleConfirm={handleConfirm}
+        handleInputChange={handleInputChange}
+      />
       <div className="Playlists">
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "25px",
-              fontWeight: "bold",
-            }}
-          >
-            Minhas Playlists
-          </div>
-          <br />
-          <GreenButton label="Criar playlist" />
-        </div>
+        <PlaylistHeader handleOpen={handleOpen} />
         Sua coleção pessoal de playlists
-        <div className="PlaylistList">
-          {playlists ? (
-            playlists.map((playlist) => (
-              <PlaylistItem
-                key={playlist.id}
-                icon={playlist.images[0].url}
-                name={playlist.name}
-                description={playlist.description}
-              ></PlaylistItem>
-            ))
-          ) : (
-            <p>Carregando suas playlists...</p>
-          )}
-        </div>
+        <PlaylistList items={playlists || []} />
+        <Pagination
+          page={page}
+          onChange={handleChange}
+          count={totalPages}
+          sx={{ marginTop: 3 }}
+        />
       </div>
-    </Template>
+    </>
   );
 }
 

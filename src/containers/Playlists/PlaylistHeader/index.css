@@ -1,0 +1,10 @@
+.PlaylistHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .PlaylistTitle {
+    font-size: 25px;
+    font-weight: bold;
+  }
+}
