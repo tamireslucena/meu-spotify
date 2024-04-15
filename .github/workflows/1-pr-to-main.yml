@@ -1,4 +1,4 @@
-name: CI
+name: 1 - Open PR to Main
 
 on:
   push:
@@ -37,5 +37,5 @@ jobs:
           token: ${{ secrets.CICD_TOKEN }}
           title: "Auto-generated PR"
           body: "This PR was automatically generated."
-          branch: ${{ github.event_name == 'push' && github.ref == 'refs/heads/feature/*' && 'develop' || github.event_name == 'push' && github.ref == 'refs/heads/develop' && 'homologacao' || github.event_name == 'push' && github.ref == 'refs/heads/homologacao' && 'main' }}
-          base: ${{ github.event_name == 'push' && github.ref == 'refs/heads/feature/*' && 'develop' || github.event_name == 'push' && github.ref == 'refs/heads/develop' && 'homologacao' || github.event_name == 'push' && github.ref == 'refs/heads/homologacao' && 'main' }}
+          branch: ${{ github.ref }}
+          base: main
