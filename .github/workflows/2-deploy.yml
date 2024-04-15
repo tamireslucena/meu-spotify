@@ -1,4 +1,4 @@
-name: CI
+name: 2 - Deploy to Main
 
 on:
   push:
