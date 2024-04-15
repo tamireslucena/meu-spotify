@@ -21,4 +21,13 @@
   letter-spacing: 0.01em;
   text-align: center;
   color: #181414;
+
+  .sideItem {
+    cursor: pointer;
+    opacity: 0.6;
+
+    &.selected {
+      opacity: 1;
+    }
+  }
 }

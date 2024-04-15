@@ -16,7 +16,7 @@ function Login() {
           label="Entrar"
           onClick={() => {
             window.open(
-              "https://accounts.spotify.com/authorize?client_id=750947f3ef294af6acc33e8dde6c80b2&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Fhome&scope=user-top-read playlist-read-private user-read-private user-read-email",
+              "https://accounts.spotify.com/authorize?client_id=750947f3ef294af6acc33e8dde6c80b2&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Fcallback&scope=user-top-read playlist-read-private user-read-private user-read-email playlist-modify-public playlist-modify-private",
               "_self"
             );
           }}

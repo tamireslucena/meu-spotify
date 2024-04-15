@@ -1,0 +1,21 @@
+.Template {
+  position: absolute;
+
+  .sideBar {
+    height: 100vh;
+    width: 266px;
+    padding: 33px;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    gap: 5px;
+    position: fixed;
+  }
+
+  .pageContent {
+    height: calc(100vh - 66px);
+    width: calc(calc(100vw - 66px) - 266px);
+    padding: 33px 0 33px 33px;
+    margin-left: 266px;
+  }
+}
