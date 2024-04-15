@@ -35,7 +35,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.CICD_TOKEN }}
-          title: "Auto-generated PR"
+          title: "PR - main <- ${{ github.ref }}"
           body: "This PR was automatically generated."
           branch: ${{ github.ref }}
           base: main

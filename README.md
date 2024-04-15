@@ -56,7 +56,11 @@
 ### Bônus
 
 - [x] CI/CD
-  > Configurado o passo de testes
+
+  > Configurado abertura de PR automatico para main a partir das branches: develop ou que comecem com feature ou release
+
+  > Configurado o passo de testes para subidas direto na branch main
+
 - [ ] Testes E2E
 - [ ] Integração com Sentry
 - [ ] Responsividade (celular e tablet)
