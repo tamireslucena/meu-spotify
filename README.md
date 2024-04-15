@@ -7,10 +7,10 @@
 - [x] Autenticação via Spotify
 - [x] Listar artistas
 - [x] Listar albuns de um artista
-- [ ] Utilizar paginação (scroll infinito ou não)
-- [ ] Funcionamento offline
-- [ ] Testes unitários
-- [ ] Deploy da aplicação
+- [x] Utilizar paginação (scroll infinito ou não)
+- [x] Funcionamento offline (api da spotify offline)
+- [x] Testes unitários
+- [x] Deploy da aplicação
 
 ## Bônus
 
