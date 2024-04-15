@@ -11,6 +11,6 @@ export interface ProfileProps {
 }
 
 export async function getUserProfile(): Promise<ProfileProps | null> {
-  const response = await spotify.post("/v1/me");
+  const response = await spotify.get("/v1/me");
   return response.data;
 }

@@ -16,10 +16,10 @@ function Callback() {
           "https://accounts.spotify.com/api/token",
           {
             grant_type: "authorization_code",
-            client_id: "750947f3ef294af6acc33e8dde6c80b2",
-            client_secret: "5ada7af4ae3d40268bd6c663498ac46f",
+            client_id: import.meta.env.VITE_SPOTIFY_CLIENT_ID,
+            client_secret: import.meta.env.VITE_SPOTIFY_CLIENT_SECRET,
             code: userToken,
-            redirect_uri: "http://localhost:5173/callback",
+            redirect_uri: `${import.meta.env.VITE_HOST}/callback`,
             scopes:
               "user-top-read playlist-read-private user-read-private user-read-email playlist-modify-public playlist-modify-private",
           },

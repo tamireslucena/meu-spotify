@@ -1,5 +1,3 @@
-// styles
-
 import { useEffect, useState } from "react";
 import "./index.css";
 import { ArtistProps, getUserTopArtists } from "../../gateway/Artist";
