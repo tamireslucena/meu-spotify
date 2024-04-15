@@ -2,38 +2,16 @@
 
 import { useEffect, useState } from "react";
 import "./index.css";
-import spotify from "../../../services/spotify";
-import { useLocation } from "react-router-dom";
-import PlaylistItem from "../../../components/PlaylistItem";
-import Template from "../../../containers/Template";
-
-interface Album {
-  id: string;
-  name: string;
-  release_date: string;
-  images: {
-    url: string;
-    width: number;
-    height: number;
-  }[];
-}
-
-async function getDiscography(id: string): Promise<Album[] | null> {
-  try {
-    const response = await spotify.get(`/v1/artists/${id}/albums`);
-    return response.data.items;
-  } catch (error) {
-    console.error("Error fetching top artists:", error);
-    return [
-      //TODO: AQUI A GENTE COLOCA UM CACHE
-    ];
-  }
-}
+import { useLocation, useNavigate } from "react-router-dom";
+import arrowLeft from "../../../assets/icons/arrow-left.png";
+import { AlbumProps, getDiscography } from "../../../gateway/Artist";
+import AlbumList from "../../../containers/Artists/DIscography/AlbumList";
 
 function Discography() {
   const location = useLocation();
+  const navigate = useNavigate();
 
-  const [albums, setAlbums] = useState<Album[] | null>(null);
+  const [albums, setAlbums] = useState<AlbumProps[] | null>(null);
 
   useEffect(() => {
     async function fetchTopArtists() {
@@ -45,33 +23,26 @@ function Discography() {
   }, [location.state.id]);
 
   return (
-    <Template>
-      <div className="Discography">
-        <div
-          style={{
-            fontSize: "25px",
-            fontWeight: "bold",
-            color: "white",
-          }}
-        >
+    <div className="Discography">
+      <div className="discographyHeader">
+        <div className="discographyPageTitle">
+          <img
+            alt="icon"
+            src={arrowLeft}
+            onClick={() => {
+              navigate(-1);
+            }}
+          />
           {location.state.artist}
         </div>
-        <div className="DiscographyList">
-          {albums ? (
-            albums.map((album) => (
-              <PlaylistItem
-                key={album.id}
-                icon={album.images[0].url}
-                name={album.name}
-                description={album.release_date}
-              ></PlaylistItem>
-            ))
-          ) : (
-            <p>Carregando álbuns do artista...</p>
-          )}
-        </div>
+        <img
+          className="artistImage"
+          alt="artist image"
+          src={location.state.artistImage}
+        />
       </div>
-    </Template>
+      <AlbumList items={albums || []} />
+    </div>
   );
 }
 

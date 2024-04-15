@@ -1,16 +1,27 @@
 .Discography {
-  height: 100vh;
-  width: 100%;
-  padding: 33px;
   display: flex;
   flex-direction: column;
   font-family: Rubik, sans-serif;
   color: #d3dadd;
 
-  .DiscographyList {
+  .artistImage {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+  }
+
+  .discographyHeader {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding-top: 50px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .discographyPageTitle {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 }

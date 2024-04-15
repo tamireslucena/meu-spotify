@@ -15,7 +15,7 @@ function ArtistItem({
       className="ArtistItem"
       onClick={() => {
         navigate(`/artists/${id}/albums`, {
-          state: { id: id, artist: label },
+          state: { id: id, artist: label, artistImage: icon },
         });
       }}
     >
