@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "feature/*"
+      - "develop"
+      - "release/*"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.17.0"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm test
+
+  create_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.CICD_TOKEN }}
+          title: "Auto-generated PR"
+          body: "This PR was automatically generated."
+          branch: ${{ github.event_name == 'push' && github.ref == 'refs/heads/feature/*' && 'develop' || github.event_name == 'push' && github.ref == 'refs/heads/develop' && 'homologacao' || github.event_name == 'push' && github.ref == 'refs/heads/homologacao' && 'main' }}
+          base: ${{ github.event_name == 'push' && github.ref == 'refs/heads/feature/*' && 'develop' || github.event_name == 'push' && github.ref == 'refs/heads/develop' && 'homologacao' || github.event_name == 'push' && github.ref == 'refs/heads/homologacao' && 'main' }}
