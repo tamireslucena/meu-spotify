@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as Sentry from "@sentry/react";
 
 const spotify = axios.create({
   baseURL: "https://api.spotify.com",
@@ -17,6 +18,7 @@ spotify.interceptors.response.use(
     return valueSuccess;
   },
   (valueError) => {
+    Sentry.captureException(valueError);
     const data = localStorage.getItem(valueError.response.request.responseURL);
 
     if (valueError.request.status !== 401 && data) {

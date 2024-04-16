@@ -2,7 +2,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-// pages
+import * as Sentry from "@sentry/react";
+import { Integrations } from "@sentry/tracing";
 
 // styles
 import "./index.css";
@@ -18,6 +19,12 @@ import Callback from "./pages/Callback";
 import AuthCheck from "./components/AuthCheck";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+
+Sentry.init({
+  dsn: import.meta.env.VITE_SENTRY_DNS,
+  integrations: [new Integrations.BrowserTracing()],
+  tracesSampleRate: 1.0,
+});
 
 export default function App() {
   return (
@@ -53,7 +60,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <App />
+      <Sentry.ErrorBoundary fallback={<p>An error has occurred</p>}>
+        <App />
+      </Sentry.ErrorBoundary>
     </ThemeProvider>
   </React.StrictMode>
 );
