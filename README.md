@@ -76,16 +76,19 @@
 O projeto foi criado usando as tecnologias:
 
 - [Vite]
-  Ferramenta para inicialização e compilação do projeto.
+  Ferramenta para inicialização e compilação do projeto
 
 - [TypeScript]
-  Linguagem escolhida para melhor organização e manutenção.
+  Linguagem escolhida para melhor organização e manutenção
 
 - [Jest]
-  Para realização de testes;
+  Para realização de testes
+
+- [Sentry]
+  Captura de excessões
 
 - [Vercel]
-  Ferramenta de hospedagem que ja oferece algumas facilidades para publicação de projetos em react, vite e github;
+  Ferramenta de hospedagem que ja oferece algumas facilidades para publicação de projetos em react, vite e github
 
 ## Utilizando a ferramenta
 
@@ -99,10 +102,41 @@ O projeto foi criado usando as tecnologias:
 
 > Para que o usuário consiga utilizar a ferramenta, é necessario a concessão de acesso para o email vinculado a conta spotify deste usário previamente realizada na ferramenta de desenvolvedor do spotify. Esse passo se fez necessário porque, sendo o desafio atual ainda um projeto considerado em desenvolvimento, a liberação para o publico geral só é possível após analise e aprovação do time de complience do spotify.
 
+## Utilizando a ferramenta localmente
+
+1. Clone o repositório
+
+```sh
+  git clone https://github.com/tamireslucena/meu-spotify.git
+```
+
+2. Instale as dependencias
+
+```sh
+  npm install
+```
+
+3. Variáveis de ambiente
+
+> Adicione o arquivo .env na raiz do projeto conforme `env_example`
+> Os valor do client_id e client_secret devem ser consultados a partir de uma conta `spotify-developer` - caso não tenha, para rodar localmente esta faz-se necessária - seguindo os passos:
+>
+> - 1.  Cadastra-se em https://developer.spotify.com/dashboard/
+> - 2.  Crie um novo app
+> - 3.  Acesse o app criado
+> - 4.  Acesse `Settings`
+> - 5.  Em `Redirect URIs` adicione http://localhost:5173/callback
+
+4. Rodar aplicação
+
+```sh
+  npm run dev
+```
+
 ### Evidências
 
 > Anexos do aviso recebido no Sentry - inclusive via email - sobre a excessão captura na aplicação.
 
-![alt text](sentry-dashboard-evidence.png)
+![alt text](./public/sentry-dashboard-evidence.png)
 
-![alt text](email-sentry-evidence.png)
+![alt text](./public/email-sentry-evidence.png)
