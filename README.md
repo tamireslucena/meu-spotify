@@ -27,6 +27,9 @@
       <ul>
         <li><a href="#observações">Observações</a></li>
       </ul>
+      <ul>
+        <li><a href="#evidências">Evidências</a></li>
+      </ul>
     </li>
   </ol>
 </details>
@@ -61,8 +64,9 @@
 
   > Configurado o passo de testes para subidas direto na branch main
 
+- [x] Integração com Sentry
+  > Captura de excessões de requisições para api do spotify
 - [ ] Testes E2E
-- [ ] Integração com Sentry
 - [ ] Responsividade (celular e tablet)
 - [ ] Qualidade de código (Sonarqube)
 - [ ] PWA
@@ -94,3 +98,11 @@ O projeto foi criado usando as tecnologias:
 ### Observações
 
 > Para que o usuário consiga utilizar a ferramenta, é necessario a concessão de acesso para o email vinculado a conta spotify deste usário previamente realizada na ferramenta de desenvolvedor do spotify. Esse passo se fez necessário porque, sendo o desafio atual ainda um projeto considerado em desenvolvimento, a liberação para o publico geral só é possível após analise e aprovação do time de complience do spotify.
+
+### Evidências
+
+> Anexos do aviso recebido no Sentry - inclusive via email - sobre a excessão captura na aplicação.
+
+![alt text](sentry-dashboard-evidence.png)
+
+![alt text](email-sentry-evidence.png)
